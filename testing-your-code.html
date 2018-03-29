@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>sparkts Workshop</title>
+  <meta name="description" content="This is a workshop which provides information on R package building and how to use the sparklyr R package.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="sparkts Workshop" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a workshop which provides information on R package building and how to use the sparklyr R package." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="sparkts Workshop" />
+  
+  <meta name="twitter:description" content="This is a workshop which provides information on R package building and how to use the sparklyr R package." />
+  
+
+<meta name="author" content="Nathan Eastwood">
+
+
+<meta name="date" content="2018-03-29">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="object-documentation-man.html">
+<link rel="next" href="package-components.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">sparklyr Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="functions-r.html"><a href="functions-r.html"><i class="fa fa-check"></i><b>2</b> Functions (<code>R/</code>)</a><ul>
+<li class="chapter" data-level="2.1" data-path="functions-r.html"><a href="functions-r.html#returning"><i class="fa fa-check"></i><b>2.1</b> Returning</a></li>
+<li class="chapter" data-level="2.2" data-path="functions-r.html"><a href="functions-r.html#invisibly-returning"><i class="fa fa-check"></i><b>2.2</b> Invisibly Returning</a></li>
+<li class="chapter" data-level="2.3" data-path="functions-r.html"><a href="functions-r.html#the-assignment-operator"><i class="fa fa-check"></i><b>2.3</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="2.4" data-path="functions-r.html"><a href="functions-r.html#the-pipe-operator"><i class="fa fa-check"></i><b>2.4</b> The Pipe Operator</a></li>
+<li class="chapter" data-level="2.5" data-path="functions-r.html"><a href="functions-r.html#argument-names"><i class="fa fa-check"></i><b>2.5</b> Argument Names</a></li>
+<li class="chapter" data-level="2.6" data-path="functions-r.html"><a href="functions-r.html#getting-help"><i class="fa fa-check"></i><b>2.6</b> Getting Help</a></li>
+<li class="chapter" data-level="2.7" data-path="functions-r.html"><a href="functions-r.html#installing-r-packages"><i class="fa fa-check"></i><b>2.7</b> Installing R Packages</a></li>
+<li class="chapter" data-level="2.8" data-path="functions-r.html"><a href="functions-r.html#loading-r-packages"><i class="fa fa-check"></i><b>2.8</b> Loading R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sparklyr.html"><a href="sparklyr.html"><i class="fa fa-check"></i><b>3</b> <code>sparklyr</code></a><ul>
+<li class="chapter" data-level="3.1" data-path="sparklyr.html"><a href="sparklyr.html#installing-a-local-version-of-spark"><i class="fa fa-check"></i><b>3.1</b> Installing a Local Version of Spark</a></li>
+<li class="chapter" data-level="3.2" data-path="sparklyr.html"><a href="sparklyr.html#connecting-to-spark"><i class="fa fa-check"></i><b>3.2</b> Connecting to Spark</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="sparklyr.html"><a href="sparklyr.html#data-types"><i class="fa fa-check"></i><b>3.2.1</b> Data Types</a></li>
+<li class="chapter" data-level="3.2.2" data-path="sparklyr.html"><a href="sparklyr.html#using-other-data-types"><i class="fa fa-check"></i><b>3.2.2</b> Using other data types</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sparklyr.html"><a href="sparklyr.html#reading-data"><i class="fa fa-check"></i><b>3.3</b> Reading Data</a></li>
+<li class="chapter" data-level="3.4" data-path="sparklyr.html"><a href="sparklyr.html#calling-scala-methods"><i class="fa fa-check"></i><b>3.4</b> Calling Scala Methods</a></li>
+<li class="chapter" data-level="3.5" data-path="sparklyr.html"><a href="sparklyr.html#the-jar-instjava"><i class="fa fa-check"></i><b>3.5</b> The Jar (<code>inst/java/</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="object-documentation-man.html"><a href="object-documentation-man.html"><i class="fa fa-check"></i><b>4</b> Object Documentation (<code>man/</code>)</a><ul>
+<li class="chapter" data-level="4.1" data-path="object-documentation-man.html"><a href="object-documentation-man.html#using-roxygen2-to-document-the-package"><i class="fa fa-check"></i><b>4.1</b> Using <code>roxygen2</code> to Document the Package</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="testing-your-code.html"><a href="testing-your-code.html"><i class="fa fa-check"></i><b>5</b> Testing Your Code</a><ul>
+<li class="chapter" data-level="5.1" data-path="testing-your-code.html"><a href="testing-your-code.html#testthat"><i class="fa fa-check"></i><b>5.1</b> <code>testthat</code></a><ul>
+<li class="chapter" data-level="5.1.1" data-path="testing-your-code.html"><a href="testing-your-code.html#setting-up-the-test-framework"><i class="fa fa-check"></i><b>5.1.1</b> Setting up the Test Framework</a></li>
+<li class="chapter" data-level="5.1.2" data-path="testing-your-code.html"><a href="testing-your-code.html#writing-tests"><i class="fa fa-check"></i><b>5.1.2</b> Writing Tests</a></li>
+<li class="chapter" data-level="5.1.3" data-path="testing-your-code.html"><a href="testing-your-code.html#running-tests"><i class="fa fa-check"></i><b>5.1.3</b> Running Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="testing-your-code.html"><a href="testing-your-code.html#behavior-driven-development-bdd"><i class="fa fa-check"></i><b>5.2</b> Behavior-driven development (BDD)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="package-components.html"><a href="package-components.html"><i class="fa fa-check"></i><b>6</b> Package Components</a><ul>
+<li class="chapter" data-level="6.1" data-path="package-components.html"><a href="package-components.html#package-metadata-description"><i class="fa fa-check"></i><b>6.1</b> Package metadata (<code>DESCRIPTION</code>)</a></li>
+<li class="chapter" data-level="6.2" data-path="package-components.html"><a href="package-components.html#namespaces-namespace"><i class="fa fa-check"></i><b>6.2</b> Namespaces (<code>NAMESPACE</code>)</a></li>
+<li class="chapter" data-level="6.3" data-path="package-components.html"><a href="package-components.html#vignettes-vignettes"><i class="fa fa-check"></i><b>6.3</b> Vignettes (<code>vignettes/</code>)</a></li>
+<li class="chapter" data-level="6.4" data-path="package-components.html"><a href="package-components.html#installed-files-inst"><i class="fa fa-check"></i><b>6.4</b> Installed Files (<code>inst/</code>)</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="package-components.html"><a href="package-components.html#raw-data-instdata_raw"><i class="fa fa-check"></i><b>6.4.1</b> Raw Data (<code>inst/data_raw/</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="package-components.html"><a href="package-components.html#utils.r"><i class="fa fa-check"></i><b>6.5</b> <code>utils.R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="building-checking-and-installing-the-package.html"><a href="building-checking-and-installing-the-package.html"><i class="fa fa-check"></i><b>7</b> Building, Checking and Installing the Package</a><ul>
+<li class="chapter" data-level="7.1" data-path="building-checking-and-installing-the-package.html"><a href="building-checking-and-installing-the-package.html#check"><i class="fa fa-check"></i><b>7.1</b> Check</a></li>
+<li class="chapter" data-level="7.2" data-path="building-checking-and-installing-the-package.html"><a href="building-checking-and-installing-the-package.html#building-and-installing"><i class="fa fa-check"></i><b>7.2</b> Building and Installing</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="building-checking-and-installing-the-package.html"><a href="building-checking-and-installing-the-package.html#build-a-binary"><i class="fa fa-check"></i><b>7.2.1</b> Build a Binary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="other-useful-tidbits.html"><a href="other-useful-tidbits.html"><i class="fa fa-check"></i><b>8</b> Other Useful Tidbits</a></li>
+<li class="chapter" data-level="9" data-path="linting.html"><a href="linting.html"><i class="fa fa-check"></i><b>9</b> Linting</a><ul>
+<li class="chapter" data-level="9.1" data-path="linting.html"><a href="linting.html#lintr"><i class="fa fa-check"></i><b>9.1</b> <code>lintr</code></a></li>
+<li class="chapter" data-level="9.2" data-path="linting.html"><a href="linting.html#styler"><i class="fa fa-check"></i><b>9.2</b> <code>styler</code></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">sparkts Workshop</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="testing-your-code" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Testing Your Code</h1>
+<p>You can use <code>devtools::load_all()</code> to simulate building and loading your package. This is useful for when you have written some new code or a new feature and you want to interactively run it.</p>
+<div id="testthat" class="section level2">
+<h2><span class="header-section-number">5.1</span> <code>testthat</code></h2>
+<p>There are a number of ways of writing unit tests in R but the simplest is to use the package <code>testthat</code>.</p>
+<div id="setting-up-the-test-framework" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Setting up the Test Framework</h3>
+<p>We can set up a test framework in a package using the function <code>use_testthat</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">use_testthat</span>()</a></code></pre></div>
+<p>This will create a test directory that contains:</p>
+<ul>
+<li>A script <code>testthat.R</code> that contains all the code required to run the package tests</li>
+<li>A directory <code>testthat/</code> where we will save all of our test scripts</li>
+</ul>
+<p>The <code>use_testthat</code> function will also update the <code>DESCRIPTION</code> file accordingly to include <code>testthat</code> as a suggested package.</p>
+</div>
+<div id="writing-tests" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Writing Tests</h3>
+<p>With the package <code>testthat</code> we create individual tests using functions named with the pattern <code>expect_*</code>. Some of the most common expect statements are given in the following table:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Expectation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>expect_identical</td>
+<td>Checks for exact quality</td>
+</tr>
+<tr class="even">
+<td>expect_equal</td>
+<td>Checks for equality with numerical tolerance</td>
+</tr>
+<tr class="odd">
+<td>expect_equivalent</td>
+<td>More relaxed version of equals</td>
+</tr>
+<tr class="even">
+<td>expect_is</td>
+<td>Checks than an object inherits a specified class</td>
+</tr>
+<tr class="odd">
+<td>expect_matches</td>
+<td>Compares a character vector to a regular expression</td>
+</tr>
+<tr class="even">
+<td>expect_true</td>
+<td>Checks that the logical TRUE is returned</td>
+</tr>
+<tr class="odd">
+<td>expect_false</td>
+<td>Checks that the logical FALSE is returned</td>
+</tr>
+<tr class="even">
+<td>expect_error</td>
+<td>Checks that an expression throws an error</td>
+</tr>
+<tr class="odd">
+<td>expect_warning</td>
+<td>Checks that an expression gives a warning</td>
+</tr>
+<tr class="even">
+<td>expect_message</td>
+<td>Checks that an expression issues a message</td>
+</tr>
+</tbody>
+</table>
+<p>We typically want to group tests which belong to a single function together. We do this in the <code>test_that</code> function.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">context</span>(<span class="st">&quot;A and B have the same column names and same second column&quot;</span>)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">test_that</span>(<span class="st">&quot;Test that A is the same as B&quot;</span>, {</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">  A &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="dt">y =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">  B &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="dt">y =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6">  </a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">  <span class="kw">expect_equal</span>(<span class="kw">colnames</span>(A), <span class="kw">colnames</span>(B))</a>
+<a class="sourceLine" id="cb22-8" data-line-number="8">  <span class="kw">expect_identical</span>(A<span class="op">$</span>y, B<span class="op">$</span>y)</a>
+<a class="sourceLine" id="cb22-9" data-line-number="9">})</a></code></pre></div>
+<p>The <code>context</code> function here indicates that all of the <code>test_that</code> groups that follow can be collected together. To structure this as tests for our package we would save all of the above into a single file.</p>
+</div>
+<div id="running-tests" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Running Tests</h3>
+<p>To run the tests in a package, we use the <code>test()</code> function from the <code>devtools</code> package.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">test</span>()</a></code></pre></div>
+</div>
+</div>
+<div id="behavior-driven-development-bdd" class="section level2">
+<h2><span class="header-section-number">5.2</span> Behavior-driven development (BDD)</h2>
+<p>To implement BDD in R, one should use the <code>testthat::describe()</code> function. Examples can be seen in <code>?testthat::describe</code>.</p>
+<p>More robust testing is done using the <code>testthat</code> package, however.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="object-documentation-man.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="package-components.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["workshop.pdf", "workshop.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

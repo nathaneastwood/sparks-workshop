@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>sparkts Workshop</title>
+  <meta name="description" content="This is a workshop which provides information on R package building and how to use the sparklyr R package.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="sparkts Workshop" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a workshop which provides information on R package building and how to use the sparklyr R package." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="sparkts Workshop" />
+  
+  <meta name="twitter:description" content="This is a workshop which provides information on R package building and how to use the sparklyr R package." />
+  
+
+<meta name="author" content="Nathan Eastwood">
+
+
+<meta name="date" content="2018-03-29">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="sparklyr.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">sparklyr Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="functions-r.html"><a href="functions-r.html"><i class="fa fa-check"></i><b>2</b> Functions (<code>R/</code>)</a><ul>
+<li class="chapter" data-level="2.1" data-path="functions-r.html"><a href="functions-r.html#returning"><i class="fa fa-check"></i><b>2.1</b> Returning</a></li>
+<li class="chapter" data-level="2.2" data-path="functions-r.html"><a href="functions-r.html#invisibly-returning"><i class="fa fa-check"></i><b>2.2</b> Invisibly Returning</a></li>
+<li class="chapter" data-level="2.3" data-path="functions-r.html"><a href="functions-r.html#the-assignment-operator"><i class="fa fa-check"></i><b>2.3</b> The Assignment Operator</a></li>
+<li class="chapter" data-level="2.4" data-path="functions-r.html"><a href="functions-r.html#the-pipe-operator"><i class="fa fa-check"></i><b>2.4</b> The Pipe Operator</a></li>
+<li class="chapter" data-level="2.5" data-path="functions-r.html"><a href="functions-r.html#argument-names"><i class="fa fa-check"></i><b>2.5</b> Argument Names</a></li>
+<li class="chapter" data-level="2.6" data-path="functions-r.html"><a href="functions-r.html#getting-help"><i class="fa fa-check"></i><b>2.6</b> Getting Help</a></li>
+<li class="chapter" data-level="2.7" data-path="functions-r.html"><a href="functions-r.html#installing-r-packages"><i class="fa fa-check"></i><b>2.7</b> Installing R Packages</a></li>
+<li class="chapter" data-level="2.8" data-path="functions-r.html"><a href="functions-r.html#loading-r-packages"><i class="fa fa-check"></i><b>2.8</b> Loading R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sparklyr.html"><a href="sparklyr.html"><i class="fa fa-check"></i><b>3</b> <code>sparklyr</code></a><ul>
+<li class="chapter" data-level="3.1" data-path="sparklyr.html"><a href="sparklyr.html#installing-a-local-version-of-spark"><i class="fa fa-check"></i><b>3.1</b> Installing a Local Version of Spark</a></li>
+<li class="chapter" data-level="3.2" data-path="sparklyr.html"><a href="sparklyr.html#connecting-to-spark"><i class="fa fa-check"></i><b>3.2</b> Connecting to Spark</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="sparklyr.html"><a href="sparklyr.html#data-types"><i class="fa fa-check"></i><b>3.2.1</b> Data Types</a></li>
+<li class="chapter" data-level="3.2.2" data-path="sparklyr.html"><a href="sparklyr.html#using-other-data-types"><i class="fa fa-check"></i><b>3.2.2</b> Using other data types</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sparklyr.html"><a href="sparklyr.html#reading-data"><i class="fa fa-check"></i><b>3.3</b> Reading Data</a></li>
+<li class="chapter" data-level="3.4" data-path="sparklyr.html"><a href="sparklyr.html#calling-scala-methods"><i class="fa fa-check"></i><b>3.4</b> Calling Scala Methods</a></li>
+<li class="chapter" data-level="3.5" data-path="sparklyr.html"><a href="sparklyr.html#the-jar-instjava"><i class="fa fa-check"></i><b>3.5</b> The Jar (<code>inst/java/</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="object-documentation-man.html"><a href="object-documentation-man.html"><i class="fa fa-check"></i><b>4</b> Object Documentation (<code>man/</code>)</a><ul>
+<li class="chapter" data-level="4.1" data-path="object-documentation-man.html"><a href="object-documentation-man.html#using-roxygen2-to-document-the-package"><i class="fa fa-check"></i><b>4.1</b> Using <code>roxygen2</code> to Document the Package</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="testing-your-code.html"><a href="testing-your-code.html"><i class="fa fa-check"></i><b>5</b> Testing Your Code</a><ul>
+<li class="chapter" data-level="5.1" data-path="testing-your-code.html"><a href="testing-your-code.html#testthat"><i class="fa fa-check"></i><b>5.1</b> <code>testthat</code></a><ul>
+<li class="chapter" data-level="5.1.1" data-path="testing-your-code.html"><a href="testing-your-code.html#setting-up-the-test-framework"><i class="fa fa-check"></i><b>5.1.1</b> Setting up the Test Framework</a></li>
+<li class="chapter" data-level="5.1.2" data-path="testing-your-code.html"><a href="testing-your-code.html#writing-tests"><i class="fa fa-check"></i><b>5.1.2</b> Writing Tests</a></li>
+<li class="chapter" data-level="5.1.3" data-path="testing-your-code.html"><a href="testing-your-code.html#running-tests"><i class="fa fa-check"></i><b>5.1.3</b> Running Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="testing-your-code.html"><a href="testing-your-code.html#behavior-driven-development-bdd"><i class="fa fa-check"></i><b>5.2</b> Behavior-driven development (BDD)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="package-components.html"><a href="package-components.html"><i class="fa fa-check"></i><b>6</b> Package Components</a><ul>
+<li class="chapter" data-level="6.1" data-path="package-components.html"><a href="package-components.html#package-metadata-description"><i class="fa fa-check"></i><b>6.1</b> Package metadata (<code>DESCRIPTION</code>)</a></li>
+<li class="chapter" data-level="6.2" data-path="package-components.html"><a href="package-components.html#namespaces-namespace"><i class="fa fa-check"></i><b>6.2</b> Namespaces (<code>NAMESPACE</code>)</a></li>
+<li class="chapter" data-level="6.3" data-path="package-components.html"><a href="package-components.html#vignettes-vignettes"><i class="fa fa-check"></i><b>6.3</b> Vignettes (<code>vignettes/</code>)</a></li>
+<li class="chapter" data-level="6.4" data-path="package-components.html"><a href="package-components.html#installed-files-inst"><i class="fa fa-check"></i><b>6.4</b> Installed Files (<code>inst/</code>)</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="package-components.html"><a href="package-components.html#raw-data-instdata_raw"><i class="fa fa-check"></i><b>6.4.1</b> Raw Data (<code>inst/data_raw/</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="package-components.html"><a href="package-components.html#utils.r"><i class="fa fa-check"></i><b>6.5</b> <code>utils.R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="building-checking-and-installing-the-package.html"><a href="building-checking-and-installing-the-package.html"><i class="fa fa-check"></i><b>7</b> Building, Checking and Installing the Package</a><ul>
+<li class="chapter" data-level="7.1" data-path="building-checking-and-installing-the-package.html"><a href="building-checking-and-installing-the-package.html#check"><i class="fa fa-check"></i><b>7.1</b> Check</a></li>
+<li class="chapter" data-level="7.2" data-path="building-checking-and-installing-the-package.html"><a href="building-checking-and-installing-the-package.html#building-and-installing"><i class="fa fa-check"></i><b>7.2</b> Building and Installing</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="building-checking-and-installing-the-package.html"><a href="building-checking-and-installing-the-package.html#build-a-binary"><i class="fa fa-check"></i><b>7.2.1</b> Build a Binary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="other-useful-tidbits.html"><a href="other-useful-tidbits.html"><i class="fa fa-check"></i><b>8</b> Other Useful Tidbits</a></li>
+<li class="chapter" data-level="9" data-path="linting.html"><a href="linting.html"><i class="fa fa-check"></i><b>9</b> Linting</a><ul>
+<li class="chapter" data-level="9.1" data-path="linting.html"><a href="linting.html#lintr"><i class="fa fa-check"></i><b>9.1</b> <code>lintr</code></a></li>
+<li class="chapter" data-level="9.2" data-path="linting.html"><a href="linting.html#styler"><i class="fa fa-check"></i><b>9.2</b> <code>styler</code></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">sparkts Workshop</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functions-r" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Functions (<code>R/</code>)</h1>
+<p>Everything in R is an object. Everything we do to an object is a function.</p>
+<p>To write functions, we use the <code>function()</code> key word.</p>
+<div class="figure">
+<img src="https://media.giphy.com/media/C9E08n1ssdGuudtQFk/giphy.gif" alt="Figure 1: How to write a quick function" />
+<p class="caption">Figure 1: How to write a quick function</p>
+</div>
+<p>Functions follow the following format</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">quick_maths &lt;-<span class="st"> </span><span class="cf">function</span>(add1, add2, sub1) {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">cat</span>(</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    add1, <span class="st">&quot; plus &quot;</span>, add2, <span class="st">&quot; is &quot;</span>, add1 <span class="op">+</span><span class="st"> </span>add2, <span class="st">&quot; minus &quot;</span>, sub1, <span class="st">&quot;, that&#39;s &quot;</span>,</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    add1 <span class="op">+</span><span class="st"> </span>add2 <span class="op">-</span><span class="st"> </span>sub1, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Quick maths!&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  )</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  BRRR<span class="op">::</span><span class="kw">skrrrahh</span>(<span class="st">&quot;bigshaq&quot;</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="kw">invisible</span>(add1 <span class="op">+</span><span class="st"> </span>add2 <span class="op">-</span><span class="st"> </span>sub1)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">quick_maths</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># 2 plus 2 is 4 minus 1, that&#39;s 3</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co"># Quick maths!</span></a></code></pre></div>
+<div id="returning" class="section level2">
+<h2><span class="header-section-number">2.1</span> Returning</h2>
+<p>Unlike python, in R you do not need an explicit <code>return()</code> at the end of a function. The only time you need this is for early returns, for example in an <code>if ()</code> statement. The last statement of a function is returned be default in R.</p>
+</div>
+<div id="invisibly-returning" class="section level2">
+<h2><span class="header-section-number">2.2</span> Invisibly Returning</h2>
+<p>Notice that the function above returns a value invisibly. This is useful for when you want the function to return something to be used later, but don’t want to print it to the console.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">quick_maths</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># 2 plus 2 is 4 minus 1, that&#39;s 3</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># Quick maths!</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">x <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co"># [1] 8</span></a></code></pre></div>
+</div>
+<div id="the-assignment-operator" class="section level2">
+<h2><span class="header-section-number">2.3</span> The Assignment Operator</h2>
+<p>The assignment operator in R is <code>&lt;-</code> but <code>=</code> works in the same way. It is best practice to use <code>&lt;-</code>.</p>
+</div>
+<div id="the-pipe-operator" class="section level2">
+<h2><span class="header-section-number">2.4</span> The Pipe Operator</h2>
+<p>The pipe operator (<code>%&gt;%</code>) has become a common tool within the R world. Introduced in the <code>magrittr</code> package, we read this symbol as “then”. It it used to “pipe” the left hand side into a function on the right hand side. It is used heavily within the “tidyverse”.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(mpg, cyl, hp)</a></code></pre></div>
+</div>
+<div id="argument-names" class="section level2">
+<h2><span class="header-section-number">2.5</span> Argument Names</h2>
+<p>We don’t need to explicitly state the argument names. In fact we can reorder the names or use shortened names (this is not good practice, however).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">quick_maths</span>(<span class="dt">add2 =</span> <span class="dv">2</span>, <span class="dt">sub1 =</span> <span class="dv">1</span>, <span class="dt">add1 =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># 2 plus 2 is 4 minus 1, that&#39;s 3</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># Quick maths!</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">quick_maths</span>(<span class="dt">su =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co"># 2 plus 2 is 4 minus 1, that&#39;s 3</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># Quick maths!</span></a></code></pre></div>
+</div>
+<div id="getting-help" class="section level2">
+<h2><span class="header-section-number">2.6</span> Getting Help</h2>
+<p>You can get help in R using either the <code>?</code> function or the <code>help()</code> function.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">?print</a></code></pre></div>
+<p>You can search for things within R using <code>??</code> or <code>help.search()</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">??print</a></code></pre></div>
+</div>
+<div id="installing-r-packages" class="section level2">
+<h2><span class="header-section-number">2.7</span> Installing R Packages</h2>
+<p>We install packages with the <code>install.packages()</code> function.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;sparklyr&quot;</span>)</a></code></pre></div>
+<p>To install a package from GitHub you can use the <code>remotes</code> package, first to install itself, and then to install a package.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># Install remotes</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/r-lib/remotes/master/install-github.R&quot;</span>)<span class="op">$</span><span class="kw">value</span>(<span class="st">&quot;r-lib/remotes&quot;</span>)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co"># Use remotes to install the development version of sparklyr</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;rstudio/sparklyr&quot;</span>)</a></code></pre></div>
+</div>
+<div id="loading-r-packages" class="section level2">
+<h2><span class="header-section-number">2.8</span> Loading R Packages</h2>
+<p>We can load R packages using one of two functions: <code>library()</code> or <code>require()</code>. You <a href="https://yihui.name/en/2014/07/library-vs-require/">should use</a> <code>library()</code>, however.</p>
+<p>One bad consequence of <code>require()</code> is that if you <code>require('foo')</code> in the beginning of an R script, and use a function <code>bar()</code> in the <code>foo</code> package on line 175, R will throw an error <code>object &quot;bar&quot; not found</code> if <code>foo</code> was not installed.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(sparklyr)</a></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sparklyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["workshop.pdf", "workshop.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
