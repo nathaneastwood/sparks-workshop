@@ -1,0 +1,50 @@
+# Other Useful Tidbits
+
+Some great places for blog posts exist:
+
+* [R-bloggers](https://www.r-bloggers.com) brings together tonnes of R blogs
+* R can be quirky, [this blog post](https://ironholds.org/projects/rbitrary/) explains some of those quirks.
+* [R Package Primer](http://kbroman.org/pkg_primer/): Minimum tutorial for R package building.
+* [Writing an R package from scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
+
+Some great free R books are available:
+
+* [Advanced R](http://adv-r.had.co.nz)
+* [R for Data Science](http://r4ds.had.co.nz) covers the `dplyr` package which works seamlessly with `sparklyr`.
+* [R Cookbook](http://www.cookbook-r.com)
+* [R Packages](http://r-pkgs.had.co.nz)
+
+Other great R websites include:
+
+* [Metacran](https://www.r-pkg.org): see trending and featured packages, search and browse all CRAN/R packages.
+* [R Seek](https://rseek.org): dedicated R Google search engine
+
+# Linting
+
+Generally I have stuck to the [tidyverse coding standards](http://style.tidyverse.org). These standards were implemented with the [Data Science Campus](https://datasciencecampus.github.io/coding-standards/r.html). You can automatically format your code using two packages.
+
+## `lintr`
+
+The `sparkts` package automatically runs [`lintr`](https://github.com/jimhester/lintr) to check for style errors during the test phase of the package check or when running `devtools::test()`. You can install `lintr` with:
+
+```{r lint}
+remotes::install_github("jimhester/lintr")
+```
+
+Then to run the linter run
+
+```{r run_lint}
+lintr::lint_package()
+```
+
+## `styler`
+
+The goal of `styler` is to provide non-invasive pretty-printing of R source code while adhering to the [tidyverse formatting rules](http://style.tidyverse.org). You can run `styler` on your entire package using
+
+```{r style_pkg}
+styler::style_pkg()
+```
+
+Or you can style an individual file using the RStudio Addin.
+
+![how to use styler to styler a file](https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif)

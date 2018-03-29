@@ -1,0 +1,63 @@
+# Object Documentation (`man/`)
+
+Documentation in R is saved as `.Rd` files. These live separately to our R functions which live in `.R` files. However we can generate our `.Rd` files using an R package called `roxygen2` which parses the `.R` files.
+
+We include a `roxygen` header above the function definition. Each line of the `roxygen` header starts with the symbols `#'`. This is known as a `roxygen` comment. Following this we use special tags to indicate a particular component of the help file. However the first three elements have special meaning. The first three paragraphs of the header are treated as:
+
+* The title of the help page (short, one sentence)
+* The description for the help page (brief description of the function)
+* The details section which can provide much more information about the function, what it implements etc. 
+
+Following these lines we must use the tags to distinguish elements. These tags all start with an `@` symbol. Some tags and their uses are:
+
+| Tag | Purpose |
+| --- | ------- |
+| @param | Identify each of the function arguments and the corresponding help text |
+| @return | Detail the output of the function |
+| @author | Who wrote this function? |
+| @seealso | Other functions that the user should also look at the help documentation for |
+| @examples	| Code examples of running the function |
+| @import/@importFrom | Indicate a package or function within a package to be imported |
+| @export | Indicate that this function should be exported (i.e. made visible to the end user) |
+
+The following is an example of how this might look for an example function.
+
+```{r roxygen_ex}
+#' Sample from a dataset	 
+#'
+#' This function has been designed to sample from the rows of a two 
+#' dimensional data set returning all columns of the sampled rows.
+#'
+#' @param data The matrix or data.frame from which rows are to be sampled.
+#' @param size The number of samples to take.
+#' @param replace Should values be replaced? By default takes the value TRUE.
+#' @param ... Any other parameters to be passed to the sample function.
+#'
+#' @return Returns a dataset of the same type as the input data with \code{size} 
+#' rows.
+#'
+#' @author Nathan Eastwood <neastwood@@mango-solutions.com>
+#' 
+#' @examples
+#' sampleFromData(airquality, 100)
+#'
+#' @export
+sampleFromData <- function(data, size, replace = TRUE, ...) {
+...
+}
+```
+
+To generate the `.Rd` files, we run the `devtools::document()` function (Ctrl/Cmd + Shift + D).
+
+## Using `roxygen2` to Document the Package
+
+We can also generate the package documentation using `roxygen2`. For package documentation we need to include the tags `@docType` and `@name`. The header itself needs to be followed by `NULL` as all headers need to be followed by some form of R code. 
+
+Whilst this header can go in any file, good practice is to create a separate R script which takes the package name that contains this header. In the `sparkts` package therefore, we have an R script named `sparkts.R` in the R directory containing the following:
+
+```{r package_desc}
+#' A package for calling Scala methods from the spark-ts package
+"_PACKAGE"
+```
+
+We could of course expand this by adding a description etc.

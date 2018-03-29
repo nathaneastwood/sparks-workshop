@@ -1,0 +1,121 @@
+# Package Components
+
+As a minimum we need 4 components in an R package:
+
+* `DESCRIPTION` file
+* `NAMESPACE` file
+* `R/` directory
+* `man/` directory
+
+We discuss the `DESCRIPTION` and `NAMESPACE` files below and introduce `vignettes` and the `inst` folder.
+
+To create a package, we can use the `devtools::create()` function or use the RStudio GUI. File > New Project > New or Existing Directory > R Package. These two options set up the package components described above.
+
+## Package metadata (`DESCRIPTION`)
+
+The `DESCRIPTION` file is an important file for telling users of your package information such as who wrote the package, who is maintaining the package, what the current version of the package is and what other packages are needed to run your package among other things.
+
+```
+Package: sparkts
+Title: Call Methods from the spark-ts Package
+Version: 0.0.4
+Authors@R:
+    person("Nathan", "Eastwood", email = "nathan.eastwood@icloud.com", 
+           role = c("aut", "cre"))
+Description: This package is used for calling Scala methods from the spark-ts 
+    package.
+Depends:
+    R (>= 3.4.2),
+    sparklyr
+Imports:
+    dplyr
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests:
+    knitr,
+    lintr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+```
+
+Notice that we have included:
+
+* Details about what role authors take (author, creator, contributor)
+* Packages required for the package and their version requirements
+* The license for the package
+
+Notice here that the `sparkts` file references a separate `LICENCE` file which in this case just includes the information for the Apache 2.0 licence.
+
+## Namespaces (`NAMESPACE`)
+
+As the name suggests, `NAMESPACE` provides a "space" for "names". It provides a context for looking up the value of an object associated with a name. When loading different packages, sometimes they can have functions with the same names. So how does R know which function to use? Take for example, the `summarize` functions in the `Hmisc` and `plyr` packages. 
+
+A namespace make your package self-contained in two ways: the imports and the exports. The imports define how a function in one package finds a function in another. The exports help you avoid conflicts with other packages by specifying which functions are available outside of your package (internal functions are available only within your package and can’t easily be used by another package). 
+
+You can, however, explicitly refer to specific functions: `Hmisc::summarize()` and `plyr::summarize()`. All the `::` function does is explicitly load a function from a given package.
+
+To better understand how R searches and finds stuff, read [this](https://ironholds.org/projects/rbitrary/) excellent blog post!
+
+An important point to note is that if you are using `roxygen2` you _do not_ need to edit the `NAMESPACE` file because you define your imports (`@import`, `@importFrom`) next to your function and then `@export` that function (if you want it to be callable by the end user). `roxygen2` then does the hard work filling in your `NAMESPACE` file when it parses these tags.
+
+## Vignettes (`vignettes/`)
+
+Vignettes are essentially user guides for your package. They offer more detail than the files in your `man/` folder and usually provide in depth explanations and examples for your package. The package structure for a vignette and a template file that we can start from can be created using the `devtools::use_vignette()` function. This will also appropriately update the `DESCRIPTION` file for us. 
+
+```{r vignette}
+devtools::use_vignette("QuickStart")
+```
+
+Vignettes can be written using Rmarkdown which is a variant of markdown that allows the user to include code "chunks". A package called `knitr` will then parse these chunks and create a markdown file including your text with the already ran code output. This can then be converted to a number of other file types. Code chunks take the following form:
+
+````
+```{r fun_ex}`r ''`
+quick_maths <- function(add1, add2, sub1) {
+  cat(
+    add1, " plus ", add2, " is ", add1 + add2, " minus ", sub1, ", that's ",
+    add1 + add2 - sub1, "\nQuick maths!", sep = ""
+  )
+  BRRR::skrrrahh("bigshaq")
+  invisible(add1 + add2 - sub1)
+}
+
+quick_maths(2, 2, 1)
+```
+````
+
+Notice here that we define a code chunk with three backticks following by a set of curly braces, the language (`r`) and then a name for that code chunk[^name].
+
+[^name]: Note that you don't need to name a code chunk but it is good for debugging purposes as it helps to track down failing chunks.
+
+Inside the curly brackets we can include a number of additional options to control if and how the code is run and output. 
+
+| Option | Values | Behaviour |
+| ------ | ------ | --------- |
+| `echo` | `TRUE`/`FALSE` | Controls whether R code is returned to the report. |
+| `eval` | `TRUE`/`FALSE` | Controls whether a code chunk is run and evaluated. This can be useful for displaying code in a report that we do not actually want to run. |
+| `collapse` | `TRUE`/`FALSE` | Collapses the R code and output into a single block. |
+| `include` | `TRUE`/`FALSE` | Determines whether the chunk is include in the report. If `FALSE` the code is run but nothing is included in the report relating to this chunk. |
+| `results` | `"markup"`, `"asis"`, `"hold"`, `"hide"` | Controls how the outputs are displayed. `"markup"` will mark up the results, `"asis"` will return the results in raw R, `"hold"` will not output until after the whole chunk has been evaluated, `"hide"` will hide the R output. |
+| `comment` | `"##"` | The output will have the character string `"##"` at the start of each line. Setting to `NA` will disable this. |
+| `prompt` | `TRUE`/`FALSE` | Whether or not to display the `>` prompt before lines of code. |
+
+Note that there are [many other](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) options you can use.
+
+## Installed Files (`inst/`)
+
+The `inst` folder is designed to hold any raw data files you may have or other files the package uses such as the Jar and raw data files. 
+
+### Raw Data (`inst/data_raw/`)
+
+The `sparkts` package can use the raw JSON files used within the tests by storing them in a `data_raw` folder within the `inst` folder. You can set up the raw data folder using:
+
+```{r data_raw}
+devtools::use_data_raw()
+```
+
+## `utils.R`
+
+Oftentimes your package will have lots of little helper functions which you call within your main functions. These should live within `R/utils.R`. These are generally non-exported functions.

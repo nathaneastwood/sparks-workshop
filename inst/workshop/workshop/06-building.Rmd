@@ -1,0 +1,33 @@
+# Building, Checking and Installing the Package
+
+So you've written your functions, their documentation and tests and now you would like to be able to load your package to use every time you use R. For this we have some additional steps.
+
+## Check
+
+Before you release your package you will want to run an `R CMD check` (the command line tool). This is made easy (and better) by the `devtools::check()` function. This function is [composed of](http://r-pkgs.had.co.nz/check.html#check-checks) over 50 individual checks. It checks things such as the package metadata, structure, `DESCRIPTION`, `NAMESPACE`, R code, data, documentation, demos, compiled code, tests and vignettes.
+
+The workflow for checking a package is simple, but tedious:
+
+* Run `devtools::check()`, or press Ctrl/Cmd + Shift + E
+* Fix the first problem
+* Repeat until there are no more problems
+
+`R CMD check` returns three types of messages:
+
+* `ERROR`s
+* `WARNING`s
+* `NOTE`s
+
+You should strive to fix all `WARNING`s and `ERROR`s. You should also strive to fix all `NOTE`s, however these aren't as serious and may sometimes be there for a valid reason (for example including a large Jar file).
+
+## Building and Installing
+
+To build and install the package, there are three options:
+
+* Use the `devtools::build()` function
+* Use the "Install and Restart" RStudio GUI button under the "Build" tab; or press Ctrl/Cmd + Shift + B
+* Use the `R CMD build` followed by `R CMD INSTALL` command line functions
+
+### Build a Binary
+
+To build the binary for your package, use `devtools::build(binary = TRUE)`. This will give you a `.tar.gz` version of your package.

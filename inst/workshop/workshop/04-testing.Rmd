@@ -1,0 +1,69 @@
+# Testing Your Code
+
+You can use `devtools::load_all()` to simulate building and loading your package. This is useful for when you have written some new code or a new feature and you want to interactively run it.
+
+## `testthat`
+
+There are a number of ways of writing unit tests in R but the simplest is to use the package `testthat`.
+
+### Setting up the Test Framework
+
+We can set up a test framework in a package using the function `use_testthat`.
+
+```{r use_testthat}
+use_testthat()
+```
+
+This will create a test directory that contains:
+
+* A script `testthat.R` that contains all the code required to run the package tests
+* A directory `testthat/` where we will save all of our test scripts
+
+The `use_testthat` function will also update the `DESCRIPTION` file accordingly to include `testthat` as a suggested package. 
+
+### Writing Tests
+
+With the package `testthat` we create individual tests using functions named with the pattern `expect_*`. Some of the most common expect statements are given in the following table:
+
+| Expectation | Description |
+| ----------- | ----------- |
+| expect_identical | Checks for exact quality |
+| expect_equal | Checks for equality with numerical tolerance |
+| expect_equivalent | More relaxed version of equals |
+| expect_is | Checks than an object inherits a specified class |
+| expect_matches | Compares a character vector to a regular expression |
+| expect_true | Checks that the logical TRUE is returned |
+| expect_false | Checks that the logical FALSE is returned |
+| expect_error | Checks that an expression throws an error |
+| expect_warning | Checks that an expression gives a warning |
+| expect_message | Checks that an expression issues a message |
+
+We typically want to group tests which belong to a single function together. We do this in the `test_that` function.
+
+```{r test_that, eval = TRUE}
+context("A and B have the same column names and same second column")
+
+test_that("Test that A is the same as B", {
+  A <- data.frame(x = rnorm(10), y = 1:10)
+  B <- data.frame(x = rnorm(10), y = 1:10)
+  
+  expect_equal(colnames(A), colnames(B))
+  expect_identical(A$y, B$y)
+})
+```
+
+The `context` function here indicates that all of the `test_that` groups that follow can be collected together. To structure this as tests for our package we would save all of the above into a single file.
+
+### Running Tests
+
+To run the tests in a package, we use the `test()` function from the `devtools` package.
+
+```{r run_tests}
+devtools::test()
+```
+
+## Behavior-driven development (BDD)
+
+To implement BDD in R, one should use the `testthat::describe()` function. Examples can be seen in `?testthat::describe`.
+
+More robust testing is done using the `testthat` package, however.
